@@ -37,8 +37,8 @@ services:
     - WORDPRESS_DB_HOST=$DB_HOST:$DB_PORT
     - WORDPRESS_DB_USER=$WP_DB_USER 
     - WORDPRESS_DB_PASSWORD=$WP_DB_PASS
-    - WORDPRESS_CONFIG_EXTRA: |
-        define( 'AUTOMATIC_UPDATER_DISABLED', true );
+    # - WORDPRESS_CONFIG_EXTRA: |
+    #     define( 'AUTOMATIC_UPDATER_DISABLED', true );
     networks:
     - internet
     - local
