@@ -20,36 +20,38 @@ services:
         NGINX_VERSION: $NGINX_VERSION
     restart: on-failure
     depends_on:
-     - wordpress
-     - phpmyadmin
+    - wordpress
+    - phpmyadmin
     ports:
-     - "80:80"
-     - "8080:8080"
+    - "80:80"
+    - "8080:8080"
     networks:
-      - internet
-      - local
+    - internet
+    - local
     logging: *mainlog
 
   wordpress:
     image: wordpress:$WP_VERSION
     restart: on-failure
     environment:
-     - WORDPRESS_DB_HOST=$DB_HOST:$DB_PORT
-     - WORDPRESS_DB_USER=$WP_DB_USER 
-     - WORDPRESS_DB_PASSWORD=$WP_DB_PASS
+    - WORDPRESS_DB_HOST=$DB_HOST:$DB_PORT
+    - WORDPRESS_DB_USER=$WP_DB_USER 
+    - WORDPRESS_DB_PASSWORD=$WP_DB_PASS
+    - WORDPRESS_CONFIG_EXTRA: |
+        define( 'AUTOMATIC_UPDATER_DISABLED', true );
     networks:
-      - internet
-      - local
+    - internet
+    - local
     logging: *mainlog
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:$PMA_VERSION
     restart: on-failure
     environment:
-     - PMA_HOST=$DB_HOST
-     - PMA_PORT=$DB_PORT
+    - PMA_HOST=$DB_HOST
+    - PMA_PORT=$DB_PORT
     networks:
-      - local
+    - local
     logging: *mainlog
 
   mysql:
@@ -65,6 +67,6 @@ services:
       MYSQL_USER: $MYSQL_USER
       MYSQL_PASSWORD: $MYSQL_PASSWORD
     networks:
-      - local
+    - local
     logging: *mainlog
     command: --default-authentication-plugin=mysql_native_password
