@@ -48,6 +48,8 @@ services:
     build: 
       context: ./
       dockerfile: phpmyadmin/Dockerfile
+      args:
+        PMA_VERSION: $PMA_VERSION
     restart: on-failure
     environment:
     - PMA_HOST=$DB_HOST
