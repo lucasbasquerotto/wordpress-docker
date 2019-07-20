@@ -1,0 +1,4 @@
+#!/bin/bash
+set -eou pipefail
+
+ln -sf /main/dev/docker-main/env/wordpress/.env ./.env
