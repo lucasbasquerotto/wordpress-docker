@@ -1,4 +1,51 @@
 #!/bin/bash
 set -eou pipefail
 
-ln -sf /main/dev/docker-main/env/wordpress/.env ./.env
+command="${1:-}"
+commands="update, exec, logs, stop"
+dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+CYAN='\033[0;36m'
+YELLOW='\033[0;33m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+if [ -z "$command" ]; then
+    echo -e "${RED}No command passed (valid commands: $commands)${NC}"
+    exit 1
+fi
+
+if [ "$command" = "update" ]; then    
+    echo -e "${CYAN}update - ansible...${NC}"
+    ./scripts/dev ansible 
+    echo -e "${CYAN}update - link...${NC}"
+    ./scripts/dev link
+    echo -e "${CYAN}update - build...${NC}"
+    ./scripts/dev build
+    echo -e "${CYAN}update - run...${NC}"
+    ./scripts/dev run
+    echo -e "${CYAN}update - ended${NC}"
+elif [ "$command" = "ansible" ]; then
+    /main/ansible-manager/launch dev-cmd /root/r/w/wordpress-blog-local/dev
+elif [ "$command" = "link" ]; then
+    ln -sf /main/dev/docker-main/env/wordpress/.env ./.env
+elif [ "$command" = "build" ]; then
+    details="${2:-}"
+    cd /main/dev/docker-main/
+    sudo docker-compose build $details
+elif [ "$command" = "run" ]; then
+    details="${2:-}"
+    cd /main/dev/docker-main/
+    sudo docker-compose up -d --remove-orphans $details
+elif [ "$command" = "exec" ] || [ "$command" = "logs" ]; then
+    cd /main/dev/docker-main/
+    sudo docker-compose ${@}
+elif [ "$command" = "stop" ]; then
+    /main/ansible-manager/launch stop
+
+    cd /main/dev/docker-main/
+    sudo docker-compose stop
+else
+    echo -e "${RED}Invalid command: $command (valid commands: $commands)${NC}"
+    exit 1
+fi
