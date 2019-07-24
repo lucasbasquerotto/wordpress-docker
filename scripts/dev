@@ -28,16 +28,13 @@ if [ "$command" = "update" ]; then
 elif [ "$command" = "ansible" ]; then
     /main/ansible-manager/launch dev-cmd /root/r/w/wordpress-blog-local/dev
 elif [ "$command" = "link" ]; then
+    chmod +x ./
     ln -sf /main/dev/docker-main/env/wordpress/.env ./.env
-elif [ "$command" = "build" ]; then
-    details="${2:-}"
-    cd /main/dev/docker-main/
-    sudo docker-compose build $details
 elif [ "$command" = "run" ]; then
     details="${2:-}"
     cd /main/dev/docker-main/
     sudo docker-compose up -d --remove-orphans $details
-elif [ "$command" = "exec" ] || [ "$command" = "logs" ]; then
+elif [ "$command" = "build" ] || [ "$command" = "exec" ] || [ "$command" = "logs" ]; then
     cd /main/dev/docker-main/
     sudo docker-compose ${@}
 elif [ "$command" = "stop" ]; then
