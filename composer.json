@@ -34,12 +34,14 @@
   ],
   "require": {
     "php": "7.3.7",
-    "composer/installers": "1.4",
+    "composer/installers": "1.6.0",
     "vlucas/phpdotenv": "3.4.0",
     "oscarotero/env": "1.2.0",
     "roots/wordpress": "5.2.2",
     "roots/wp-config": "1.0.0",
-    "roots/wp-password-bcrypt": "1.0.0"
+    "roots/wp-password-bcrypt": "1.0.0",
+    "wpackagist-plugin/woocommerce": "*",
+    "wpackagist-theme/maxwell": "1.7.3"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "3.4.2",
