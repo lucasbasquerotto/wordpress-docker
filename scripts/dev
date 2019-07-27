@@ -2,7 +2,7 @@
 set -eou pipefail
 
 command="${1:-}"
-commands="update, exec, logs, stop"
+commands="update, ansible, env, run, build, exec, restart, logs, stop"
 dir="$(cd "$(dirname "$(dirname "${BASH_SOURCE[0]}")")" && pwd)"
 dev_dir="$(dirname "$dir")"
 base_dir="$(dirname "$dev_dir")"
@@ -49,7 +49,7 @@ elif [ "$command" = "run" ]; then
     details="${2:-}"
     cd $pod_layer_dir/
     sudo docker-compose up -d --remove-orphans $details
-elif [ "$command" = "build" ] || [ "$command" = "exec" ] || [ "$command" = "logs" ]; then
+elif [ "$command" = "build" ] || [ "$command" = "exec" ] || [ "$command" = "logs" ] || [ "$command" = "restart" ]; then
     cd $pod_layer_dir/
     sudo docker-compose ${@}
 elif [ "$command" = "stop" ]; then
