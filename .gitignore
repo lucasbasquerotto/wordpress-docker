@@ -22,3 +22,6 @@ web/.htaccess
 
 # WP-CLI
 wp-cli.local.yml
+
+# Custom
+/run.sh
