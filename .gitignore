@@ -24,4 +24,4 @@ web/.htaccess
 wp-cli.local.yml
 
 # Custom
-/run.sh
+/run
