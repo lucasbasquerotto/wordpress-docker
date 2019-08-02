@@ -40,7 +40,7 @@
     "roots/wordpress": "5.2.2",
     "roots/wp-config": "1.0.0",
     "roots/wp-password-bcrypt": "1.0.0",
-    "wpackagist-plugin/woocommerce": "*",
+    "wpackagist-plugin/wordpress-importer": "*",
     "wpackagist-theme/maxwell": "1.7.3"
   },
   "require-dev": {
