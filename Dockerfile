@@ -5,7 +5,7 @@ COPY . /tmp/main
 RUN cd /tmp/main \
  && composer install
 
-FROM php:7.3.7-apache
+FROM php:7.3.8-apache
 
 RUN docker-php-ext-install mysqli \
  && docker-php-ext-enable mysqli
