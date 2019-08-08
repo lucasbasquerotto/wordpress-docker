@@ -1,4 +1,4 @@
-FROM composer:1.8.6 AS builder
+FROM lucasbasquerotto/wordpress:composer-1.8.6 AS builder
 
 COPY . /tmp/main
 
