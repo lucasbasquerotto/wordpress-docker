@@ -25,3 +25,4 @@ wp-cli.local.yml
 
 # Custom
 /composer.lock
+/tmp/*
