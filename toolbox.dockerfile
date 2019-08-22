@@ -12,6 +12,7 @@ RUN apt-get update \
     tasksel \
     telnet \
     time \
+    unzip \
     wget \
     zip \
  && rm -rf /var/lib/apt/lists/*
