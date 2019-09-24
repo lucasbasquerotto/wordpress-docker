@@ -9,15 +9,11 @@ RUN apt-get update \
     manpages \
     man-db \
     nano \
+    s3cmd \
     tasksel \
     telnet \
     time \
     unzip \
     wget \
     zip \
- && rm -rf /var/lib/apt/lists/*
-
-RUN apt-get update \
- && apt-get install -y --no-install-recommends \
-    s3cmd \
  && rm -rf /var/lib/apt/lists/*
