@@ -29,3 +29,6 @@ wp-cli.local.yml
 
 /env
 /env-*
+
+# w3tc
+web/app/cache/
