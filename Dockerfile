@@ -14,6 +14,7 @@ ENV WPCLI_VERSION 2.2.0
 
 RUN apt-get update \
  && apt-get install -y \
+    nano \
     less \
     zlib1g-dev \
     libzip-dev \
@@ -22,7 +23,7 @@ RUN apt-get update \
  && docker-php-ext-install zip
 
 # mysql-client
- 
+
 # Install wp-cli
 RUN curl -OL \
     https://github.com/wp-cli/wp-cli/releases/download/v${WPCLI_VERSION}/wp-cli-${WPCLI_VERSION}.phar \
