@@ -44,28 +44,6 @@ RUN curl -o /tmp/wp-completion.bash \
 
 COPY --from=builder --chown=www-data:www-data /tmp/main /var/www/html/
 
-# W3 Total Cache
-ENV W3TC_VERSION 0.14.4
-
-RUN mkdir -p /var/www/html/web/app/plugins \
- && curl -L https://downloads.wordpress.org/plugin/w3-total-cache.${W3TC_VERSION}.zip \
-    -o /tmp/w3-total-cache.zip \
- && unzip /tmp/w3-total-cache.zip -d /var/www/html/web/app/plugins \
- && rm /tmp/w3-total-cache.zip \
- && chown -R www-data:www-data /var/www/html/web/app/plugins \
- && cp /var/www/html/web/app/plugins/w3-total-cache/wp-content/advanced-cache.php \
-    /var/www/html/web/app/advanced-cache.php \
- && chown www-data:www-data /var/www/html/web/app/advanced-cache.php \
- && mkdir -p /var/www/html/web/app/cache \
- && chown www-data:www-data /var/www/html/web/app/cache \
- && mkdir -p /var/www/html/web/app/w3tc-config \
- && chown www-data:www-data /var/www/html/web/app/w3tc-config
-
 COPY --chown=www-data:www-data apache/wp.conf /etc/apache2/sites-available/000-default.conf
-
-# COPY --chown=www-data:www-data /wordpress/containers/wordpress/plugins/w3tc/app/w3tc-config/ /var/www/html/web/app/w3tc-config/
-# COPY --chown=www-data:www-data /wordpress/containers/wordpress/plugins/w3tc/app/advanced-cache.php /var/www/html/web/app/
-# COPY --chown=www-data:www-data /wordpress/containers/wordpress/plugins/w3tc/app/object-cache.php /var/www/html/web/app/
-# COPY --chown=www-data:www-data /wordpress/containers/wordpress/plugins/w3tc/.htaccess /var/www/html/web/
 
 WORKDIR /var/www/html
