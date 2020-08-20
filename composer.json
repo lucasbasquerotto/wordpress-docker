@@ -59,6 +59,12 @@
     "post-root-package-install": [
       "php -r \"copy('.env.example', '.env');\""
     ],
+    "custom-install": [
+        "bash bin/custom_install.sh"
+    ],
+    "post-install-cmd": [
+        "@custom-install"
+    ],
     "test": [
       "phpcs"
     ]

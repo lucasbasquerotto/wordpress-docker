@@ -109,8 +109,18 @@ if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROT
     $_SERVER['HTTPS'] = 'on';
 }
 
-/** Enable W3 Total Cache */
-// Config::define('WP_CACHE', true); // Added by W3 Total Cache
+/////////////////////////////////////////////
+////////// Custom Settings - Start //////////
+/////////////////////////////////////////////
+
+/** Persist W3 Total Cache settings to the database */
+Config::define('WP_CACHE', true);
+Config::define('W3TC_CONFIG_DATABASE', true);
+Config::define('W3TC_CONFIG_DATABASE_TABLE', $table_prefix . 'options');
+
+/////////////////////////////////////////////
+/////////// Custom Settings - End ///////////
+/////////////////////////////////////////////
 
 $env_config = __DIR__ . '/environments/' . WP_ENV . '.php';
 
