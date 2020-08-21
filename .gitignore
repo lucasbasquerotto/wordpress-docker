@@ -31,5 +31,6 @@ wp-cli.local.yml
 /env-*
 
 # w3tc
-/web/app/cache/
 /web/app/advanced-cache.php
+/web/app/cache/
+/web/app/object-cache.php
