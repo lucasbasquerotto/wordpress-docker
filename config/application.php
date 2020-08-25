@@ -113,6 +113,10 @@ if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROT
 ////////// Custom Settings - Start //////////
 /////////////////////////////////////////////
 
+// Config::define('WP_DEBUG', env('WP_DEBUG'));
+// Config::define('WP_DEBUG_LOG', env('WP_DEBUG'));
+// Config::define('WP_DEBUG_DISPLAY', false);
+
 if (env('USE_W3TC')) {
     // Persist W3 Total Cache settings to the database
     Config::define('WP_CACHE', true);
@@ -128,6 +132,10 @@ if (env('USE_W3TC')) {
         Config::define('W3TC_CONFIG_CACHE_REDIS_PASSWORD', '');
     }
 }
+
+error_log( 'Hello World!' );
+
+// print fig::define('WP_DEBUG', env('WP_DEBUG'));
 
 /////////////////////////////////////////////
 /////////// Custom Settings - End ///////////
