@@ -113,27 +113,15 @@ if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROT
 ////////// Custom Settings - Start //////////
 /////////////////////////////////////////////
 
-// Config::define('WP_DEBUG', env('WP_DEBUG'));
-// Config::define('WP_DEBUG_LOG', env('WP_DEBUG'));
+Config::define('WP_DEBUG', env('WP_DEBUG'));
+Config::define('WP_DEBUG_LOG', env('WP_DEBUG'));
 Config::define('WP_DEBUG_DISPLAY', false);
-
-// error_log( 'Hello World!' );
-// print fig::define('WP_DEBUG', env('WP_DEBUG'));
 
 if (env('USE_W3TC')) {
     // Persist W3 Total Cache settings to the database
     Config::define('WP_CACHE', true);
     Config::define('W3TC_CONFIG_DATABASE', true);
     Config::define('W3TC_CONFIG_DATABASE_TABLE', $table_prefix . 'options');
-
-    if (env('USE_REDIS')) {
-        // W3TC Redis
-        Config::define('W3TC_CONFIG_CACHE_ENGINE', 'redis');
-        Config::define('W3TC_CONFIG_CACHE_REDIS_SERVERS', 'redis:6379');
-        Config::define('W3TC_CONFIG_CACHE_REDIS_PERSISTENT', true);
-        Config::define('W3TC_CONFIG_CACHE_REDIS_DBID', 0);
-        Config::define('W3TC_CONFIG_CACHE_REDIS_PASSWORD', '');
-    }
 }
 
 /////////////////////////////////////////////

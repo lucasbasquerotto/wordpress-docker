@@ -20,6 +20,7 @@ RUN apt-get update \
  && apt-get install -y \
     curl \
     less \
+    libmemcached-dev \
     libzip-dev \
     nano \
     unzip \
@@ -27,7 +28,10 @@ RUN apt-get update \
     zlib1g-dev \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+ && pecl channel-update pecl.php.net \
+ && yes '' | pecl install redis memcached apcu \
  && docker-php-ext-install zip \
+ && docker-php-ext-enable redis memcached apcu \
  && a2enmod rewrite
 
 # Install wp-cli
