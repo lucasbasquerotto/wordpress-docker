@@ -33,6 +33,11 @@ wp-cli.local.yml
 # w3tc
 /web/app/advanced-cache.php
 /web/app/db.php
+/web/app/debug.log
 /web/app/cache/
 /web/app/object-cache.php
 /web/app/w3tc-config/
+
+
+# ewww
+/web/app/ewww

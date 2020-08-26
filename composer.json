@@ -41,6 +41,7 @@
     "roots/wp-config": "1.0.0",
     "roots/wp-password-bcrypt": "1.0.0",
     "wpackagist-plugin/wordpress-importer": "*",
+    "yoast/wordpress-seo": "14.9-RC3",
     "wpackagist-theme/maxwell": "1.7.3"
   },
   "require-dev": {
@@ -63,6 +64,9 @@
         "bash bin/custom_install.sh"
     ],
     "post-install-cmd": [
+        "@custom-install"
+    ],
+    "post-update-cmd": [
         "@custom-install"
     ],
     "test": [

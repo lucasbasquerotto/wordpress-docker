@@ -115,7 +115,6 @@ if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROT
 
 Config::define('WP_DEBUG', env('WP_DEBUG'));
 Config::define('WP_DEBUG_LOG', env('WP_DEBUG'));
-Config::define('WP_DEBUG_DISPLAY', false);
 
 if (env('USE_W3TC')) {
     // Persist W3 Total Cache settings to the database

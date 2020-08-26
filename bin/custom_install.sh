@@ -3,30 +3,54 @@ set -eou pipefail
 
 echo "$(date '+%F %X') Custom install - Start"
 
-W3TC_VERSION=0.14.4
 APP_DIR=/var/www/html/web/app
 PLUGINS_DIR="$APP_DIR/plugins"
-W3TC_URL="https://downloads.wordpress.org/plugin/w3-total-cache.${W3TC_VERSION}.zip"
 
-if [ ! -d "$PLUGINS_DIR/w3-total-cache" ]; then
-	mkdir -p "$PLUGINS_DIR"
+function download {
+	name="$1"
+	version="$2"
+	url="https://downloads.wordpress.org/plugin/${name}.${version}.zip"
 
-	curl -L "$W3TC_URL" -o /tmp/w3-total-cache.zip
+	if [ ! -d "$PLUGINS_DIR/${name}" ]; then
+		echo "$(date '+%F %X') download ${name} (${version})..."
 
-	unzip /tmp/w3-total-cache.zip -d "$PLUGINS_DIR"
-	rm /tmp/w3-total-cache.zip
+		mkdir -p "$PLUGINS_DIR"
 
-	chown -R www-data:www-data "$PLUGINS_DIR"
+		curl -L "$url" -o "/tmp/${name}.zip"
 
-	cp "$PLUGINS_DIR"/w3-total-cache/wp-content/advanced-cache.php \
-		"$APP_DIR"/advanced-cache.php
-	chown www-data:www-data "$APP_DIR"/advanced-cache.php
+		unzip "/tmp/${name}.zip" -d "$PLUGINS_DIR"
+		rm "/tmp/${name}.zip"
 
-	mkdir -p "$APP_DIR"/cache
-	chown www-data:www-data "$APP_DIR"/cache
+		chown -R www-data:www-data "$PLUGINS_DIR"
 
-	mkdir -p "$APP_DIR"/w3tc-config
-	chown www-data:www-data "$APP_DIR"/w3tc-config
-fi
+		echo "$(date '+%F %X') ${name} (${version}) downloaded"
+	else
+		echo "$(date '+%F %X') ${name} already downloaded"
+	fi
+}
+
+### w3-total-cache - start ###
+download "w3-total-cache" "0.14.4"
+
+cp "$PLUGINS_DIR"/w3-total-cache/wp-content/advanced-cache.php \
+	"$APP_DIR"/advanced-cache.php
+chown www-data:www-data "$APP_DIR"/advanced-cache.php
+
+mkdir -p "$APP_DIR"/cache
+chown www-data:www-data "$APP_DIR"/cache
+
+mkdir -p "$APP_DIR"/w3tc-config
+chown www-data:www-data "$APP_DIR"/w3tc-config
+### w3-total-cache - end ###
+
+download "contact-form-7" "5.2.2"
+
+download "jetpack" "8.8.2"
+
+download "akismet" "4.1.6"
+
+download "ewww-image-optimizer" "5.7.0"
+
+download "amazon-s3-and-cloudfront" "2.4.1"
 
 echo "$(date '+%F %X') Custom install - End"
