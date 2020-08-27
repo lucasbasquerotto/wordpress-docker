@@ -5,6 +5,7 @@ echo "$(date '+%F %X') Custom install - Start"
 
 APP_DIR=/var/www/html/web/app
 TMP_BASE_DIR=/var/www/html/tmp/dl/
+TMP_DL_DIR=/tmp/main/composer/dl
 
 function download {
 	name="$1"
@@ -31,11 +32,12 @@ function download {
 		echo "$(date '+%F %X') [$type] download ${name} (${version})..."
 
 		mkdir -p "$full_base_dir"
+		mkdir -p "$TMP_DL_DIR"
 
-		curl -L "$url" -o "/tmp/${name}.zip"
+		curl -L "$url" -o "$TMP_DL_DIR/${name}.zip"
 
-		unzip "/tmp/${name}.zip" -d "$full_base_dir"
-		rm "/tmp/${name}.zip"
+		unzip "$TMP_DL_DIR/${name}.zip" -d "$full_base_dir"
+		rm "$TMP_DL_DIR/${name}.zip"
 
 		chown -R www-data:www-data "$full_base_dir"
 
@@ -66,7 +68,7 @@ echo "$(date '+%F %X') download plugins..."
 
 download_plugin "akismet" "4.1.6"
 
-download_plugin "amazon-s3-and-cloudfront" "2.4.1" # S3 Offload
+download_plugin "amazon-s3-and-cloudfront" "2.4.2" # S3 Offload
 
 download_plugin "bbpress" "2.6.5"
 
@@ -80,7 +82,7 @@ download_plugin "ewww-image-optimizer" "5.7.0"
 
 download_plugin "jetpack" "8.8.2"
 
-download_plugin "leadin" "3.0.17" # Hubspot
+# download_plugin "leadin" "7.41.0" # Hubspot
 
 ### w3-total-cache - start ###
 download_plugin "w3-total-cache" "0.14.4"
@@ -103,6 +105,8 @@ download_plugin "wordpress-importer" "0.7"
 download_plugin "wordpress-seo" "14.8.1" # Yoast SEO
 
 download_plugin "wpdiscuz" "7.0.7"
+
+download_plugin "wpforo" "1.8.4"
 
 echo "$(date '+%F %X') plugins downloaded"
 
