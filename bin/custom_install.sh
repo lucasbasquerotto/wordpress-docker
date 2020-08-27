@@ -4,35 +4,80 @@ set -eou pipefail
 echo "$(date '+%F %X') Custom install - Start"
 
 APP_DIR=/var/www/html/web/app
-PLUGINS_DIR="$APP_DIR/plugins"
+TMP_BASE_DIR=/var/www/html/tmp/dl/
 
 function download {
 	name="$1"
 	version="$2"
-	url="https://downloads.wordpress.org/plugin/${name}.${version}.zip"
+	url="$3"
+	type="$4"
+	full_base_dir="$APP_DIR/$type"
+	full_dir="$full_base_dir/$name"
+	tmp_dir="$TMP_BASE_DIR/$type"
+	tmp_file="$tmp_dir/$name"
 
-	if [ ! -d "$PLUGINS_DIR/${name}" ]; then
-		echo "$(date '+%F %X') download ${name} (${version})..."
+	current_version=""
 
-		mkdir -p "$PLUGINS_DIR"
+	if [ -f "$tmp_file" ]; then
+		current_version="$(cat "$tmp_file")"
+	fi
+
+	if [ "$current_version" != "$version" ] || [ ! -d "$full_dir" ]; then
+		if [ -d "$full_dir" ]; then
+			echo "$(date '+%F %X') [$type] remove old directory (${name})..."
+			rm -rf "${full_dir:?}"
+		fi
+
+		echo "$(date '+%F %X') [$type] download ${name} (${version})..."
+
+		mkdir -p "$full_base_dir"
 
 		curl -L "$url" -o "/tmp/${name}.zip"
 
-		unzip "/tmp/${name}.zip" -d "$PLUGINS_DIR"
+		unzip "/tmp/${name}.zip" -d "$full_base_dir"
 		rm "/tmp/${name}.zip"
 
-		chown -R www-data:www-data "$PLUGINS_DIR"
+		chown -R www-data:www-data "$full_base_dir"
 
-		echo "$(date '+%F %X') ${name} (${version}) downloaded"
+		mkdir -p "$tmp_dir"
+		echo "$version" > "$tmp_file"
+
+		echo "$(date '+%F %X') [$type] ${name} (${version}) downloaded"
 	else
-		echo "$(date '+%F %X') ${name} already downloaded"
+		echo "$(date '+%F %X') [$type] ${name} already downloaded"
 	fi
 }
 
-### w3-total-cache - start ###
-download "w3-total-cache" "0.14.4"
+function download_plugin {
+	name="$1"
+	version="$2"
+	url="https://downloads.wordpress.org/plugin/${name}.${version}.zip"
+	download "$name" "$version" "$url" "plugins"
+}
 
-cp "$PLUGINS_DIR"/w3-total-cache/wp-content/advanced-cache.php \
+function download_theme {
+	name="$1"
+	version="$2"
+	url="https://downloads.wordpress.org/theme/${name}.${version}.zip"
+	download "$name" "$version" "$url" "themes"
+}
+
+echo "$(date '+%F %X') download plugins..."
+
+download_plugin "akismet" "4.1.6"
+
+download_plugin "amazon-s3-and-cloudfront" "2.4.1"
+
+download_plugin "contact-form-7" "5.2.2"
+
+download_plugin "ewww-image-optimizer" "5.7.0"
+
+download_plugin "jetpack" "8.8.2"
+
+### w3-total-cache - start ###
+download_plugin "w3-total-cache" "0.14.4"
+
+cp "$APP_DIR"/plugins/w3-total-cache/wp-content/advanced-cache.php \
 	"$APP_DIR"/advanced-cache.php
 chown www-data:www-data "$APP_DIR"/advanced-cache.php
 
@@ -43,14 +88,14 @@ mkdir -p "$APP_DIR"/w3tc-config
 chown www-data:www-data "$APP_DIR"/w3tc-config
 ### w3-total-cache - end ###
 
-download "contact-form-7" "5.2.2"
+download_plugin "wordpress-importer" "0.7"
 
-download "jetpack" "8.8.2"
+download_plugin "wordpress-seo" "14.8.1"
 
-download "akismet" "4.1.6"
+echo "$(date '+%F %X') plugins downloaded"
 
-download "ewww-image-optimizer" "5.7.0"
+echo "$(date '+%F %X') download themes..."
 
-download "amazon-s3-and-cloudfront" "2.4.1"
+download_theme "maxwell" "2.0.2"
 
-echo "$(date '+%F %X') Custom install - End"
+echo "$(date '+%F %X') themes downloaded"

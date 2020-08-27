@@ -123,6 +123,12 @@ if (env('USE_W3TC')) {
     Config::define('W3TC_CONFIG_DATABASE_TABLE', $table_prefix . 'options');
 }
 
+if ( defined( 'WP_CLI' ) && WP_CLI ) {
+    if ( ! isset( $_SERVER['SERVER_NAME'] ) ) {
+        $_SERVER['SERVER_NAME'] = 'wordpress';
+    }
+}
+
 /////////////////////////////////////////////
 /////////// Custom Settings - End ///////////
 /////////////////////////////////////////////
