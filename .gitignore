@@ -38,6 +38,5 @@ wp-cli.local.yml
 /web/app/object-cache.php
 /web/app/w3tc-config/
 
-
 # ewww
 /web/app/ewww

@@ -66,13 +66,21 @@ echo "$(date '+%F %X') download plugins..."
 
 download_plugin "akismet" "4.1.6"
 
-download_plugin "amazon-s3-and-cloudfront" "2.4.1"
+download_plugin "amazon-s3-and-cloudfront" "2.4.1" # S3 Offload
+
+download_plugin "bbpress" "2.6.5"
+
+download_plugin "buddypress" "6.2.0"
 
 download_plugin "contact-form-7" "5.2.2"
+
+download_plugin "disqus-comment-system" "3.0.17"
 
 download_plugin "ewww-image-optimizer" "5.7.0"
 
 download_plugin "jetpack" "8.8.2"
+
+download_plugin "leadin" "3.0.17" # Hubspot
 
 ### w3-total-cache - start ###
 download_plugin "w3-total-cache" "0.14.4"
@@ -88,9 +96,13 @@ mkdir -p "$APP_DIR"/w3tc-config
 chown www-data:www-data "$APP_DIR"/w3tc-config
 ### w3-total-cache - end ###
 
+download_plugin "woocommerce" "4.4.1"
+
 download_plugin "wordpress-importer" "0.7"
 
-download_plugin "wordpress-seo" "14.8.1"
+download_plugin "wordpress-seo" "14.8.1" # Yoast SEO
+
+download_plugin "wpdiscuz" "7.0.7"
 
 echo "$(date '+%F %X') plugins downloaded"
 
