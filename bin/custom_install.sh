@@ -114,4 +114,8 @@ echo "$(date '+%F %X') download themes..."
 
 download_theme "maxwell" "2.0.2"
 
+download_theme "ascent" "3.8.6"
+
+download_theme "cordero" "1.1.3"
+
 echo "$(date '+%F %X') themes downloaded"
