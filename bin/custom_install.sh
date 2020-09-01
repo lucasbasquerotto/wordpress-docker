@@ -118,4 +118,6 @@ download_theme "ascent" "3.8.6"
 
 download_theme "cordero" "1.1.3"
 
+download_theme "clean-commerce" "1.2"
+
 echo "$(date '+%F %X') themes downloaded"
