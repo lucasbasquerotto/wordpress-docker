@@ -1,4 +1,4 @@
-FROM lucasbasquerotto/wordpress:composer-1.8.6 AS builder
+FROM lucasbasquerotto/wordpress:composer-2.0.11 AS builder
 
 COPY . /tmp/main
 
@@ -9,12 +9,12 @@ RUN cd /tmp/main \
  && mkdir web/app/themes \
  && composer install
 
-FROM php:7.3.8-apache
+FROM php:8.0.3-apache
 
 RUN docker-php-ext-install mysqli \
  && docker-php-ext-enable mysqli
 
-ENV WPCLI_VERSION 2.2.0
+ENV WPCLI_VERSION 2.4.1
 
 RUN apt-get update \
  && apt-get install -y \
