@@ -78,7 +78,7 @@ download_plugin "contact-form-7" "5.4"
 
 download_plugin "disqus-comment-system" "3.0.21"
 
-download_plugin "ewww-image-optimizer" "6.0.3"
+download_plugin "ewww-image-optimizer" "6.1.0"
 
 download_plugin "jetpack" "9.5"
 
@@ -108,15 +108,17 @@ download_plugin "wpdiscuz" "7.1.5"
 
 download_plugin "wpforo" "1.9.6"
 
+download_plugin "wp-mail-smtp" "2.7.0"
+
 echo "$(date '+%F %X') plugins downloaded"
 
 echo "$(date '+%F %X') download themes..."
 
-download_theme "maxwell" "2.0.2"
+download_theme "maxwell" "2.2.2"
 
-download_theme "ascent" "3.8.6"
+download_theme "ascent" "3.8.7"
 
-download_theme "cordero" "1.1.3"
+download_theme "cordero" "1.2.2"
 
 download_theme "clean-commerce" "1.2"
 
