@@ -14,7 +14,7 @@ FROM php:8.0.3-apache
 RUN docker-php-ext-install mysqli \
  && docker-php-ext-enable mysqli
 
-ENV WPCLI_VERSION 2.4.1
+ENV WPCLI_VERSION 2.4.0
 
 RUN apt-get update \
  && apt-get install -y \
