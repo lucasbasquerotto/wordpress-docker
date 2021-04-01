@@ -1,8 +1,8 @@
 FROM lucasbasquerotto/wordpress:composer-2.0.11 AS builder
 
-COPY . /tmp/main
+COPY . /var/www/html
 
-RUN cd /tmp/main \
+RUN cd /var/www/html \
  && rm -rf web/app/plugins \
  && mkdir web/app/plugins \
  && rm -rf web/app/themes \
@@ -46,7 +46,7 @@ RUN curl -o /tmp/wp-completion.bash \
  && echo 'source /tmp/wp-completion.bash' >> /root/.bashrc \
  && echo "alias wp='wp --allow-root'" >> /root/.bashrc
 
-COPY --from=builder --chown=www-data:www-data /tmp/main /var/www/html/
+COPY --from=builder --chown=www-data:www-data /var/www/html/ /var/www/html/
 
 COPY --chown=www-data:www-data apache/wp.conf /etc/apache2/sites-available/000-default.conf
 

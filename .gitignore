@@ -30,6 +30,8 @@ wp-cli.local.yml
 /env
 /env-*
 
+/composer/dl/
+
 # w3tc
 /web/app/advanced-cache.php
 /web/app/db.php
