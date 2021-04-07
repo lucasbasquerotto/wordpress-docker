@@ -3,10 +3,6 @@ FROM lucasbasquerotto/wordpress:composer-2.0.11 AS builder
 COPY . /var/www/html
 
 RUN cd /var/www/html \
- && rm -rf web/app/plugins \
- && mkdir web/app/plugins \
- && rm -rf web/app/themes \
- && mkdir web/app/themes \
  && composer install
 
 FROM php:8.0.3-apache
