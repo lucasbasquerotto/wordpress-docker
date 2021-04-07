@@ -63,7 +63,7 @@ class Amazon_S3_and_CloudFront_Tweaks {
 		 * Custom S3 API Example: MinIO
 		 * @see https://min.io/
 		 */
-		if (env('S3_ENDPOINT')) {
+		if (env('S3_UPLOADS_ENDPOINT')) {
 			add_filter( 'as3cf_aws_s3_client_args', array( $this, 'minio_s3_client_args' ) );
 			add_filter( 'as3cf_aws_get_regions', array( $this, 'minio_get_regions' ) );
 			add_filter( 'as3cf_aws_s3_url_domain', array( $this, 'minio_s3_url_domain' ), 10, 6 );
@@ -223,7 +223,7 @@ class Amazon_S3_and_CloudFront_Tweaks {
 	 */
 	function minio_s3_client_args( $args ) {
 		// Example changes endpoint to connect to a custom server
-		$args['endpoint'] = env('S3_ENDPOINT');
+		$args['endpoint'] = env('S3_UPLOADS_ENDPOINT');
 
 		if (env('S3_USE_PATH_STYLE_ENDPOINT')) {
 			// Example forces SDK to use endpoint URLs with bucket name in path rather than domain name as required by MinIO.
@@ -268,7 +268,7 @@ class Amazon_S3_and_CloudFront_Tweaks {
 	 */
 	function minio_s3_url_domain( $domain, $bucket, $region, $expires, $args, $preview ) {
 		// MinIO doesn't need a region prefix, and always puts the bucket in the path.
-		return env('S3_ENDPOINT') . '/' . $bucket;
+		return env('S3_UPLOADS_ENDPOINT') . '/' . $bucket;
 	}
 
 	/**

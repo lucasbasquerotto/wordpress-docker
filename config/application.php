@@ -149,9 +149,15 @@ if (env('USE_S3_UPLOADS')) {
     define('S3_USE_PATH_STYLE_ENDPOINT', env('S3_USE_PATH_STYLE_ENDPOINT'));
 
     define('AS3CF_SETTINGS', serialize(array(
-        'provider' =>  env('S3_PROVIDER'),
+        'provider' =>  env('S3_PROVIDER') || 'aws',
         'access-key-id' => env('S3_UPLOADS_KEY'),
         'secret-access-key' => env('S3_UPLOADS_SECRET'),
+        'bucket' => env('S3_UPLOADS_BUCKET'),
+        'region' => env('S3_UPLOADS_REGION'),
+        // Use a custom domain (CNAME), not supported when using 'storage' Delivery Provider
+        'enable-delivery-domain' => !!env('S3_UPLOADS_BUCKET_URL'),
+        // Custom domain (CNAME), not supported when using 'storage' Delivery Provider
+        'delivery-domain' => env('S3_UPLOADS_BUCKET_URL'),
     )));
 }
 
