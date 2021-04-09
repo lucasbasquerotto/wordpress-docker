@@ -154,6 +154,13 @@ if (env('USE_S3_UPLOADS')) {
         'secret-access-key' => env('S3_UPLOADS_SECRET'),
         'bucket' => env('S3_UPLOADS_BUCKET'),
         'region' => env('S3_UPLOADS_REGION'),
+        'enable-object-prefix' => false,
+        // Automatically copy files to bucket on upload
+        'copy-to-s3' => true,
+        // Organize bucket files into YYYY/MM directories matching Media Library upload date
+        'use-yearmonth-folders' => true,
+        // Append a timestamped folder to path of files offloaded to bucket to avoid filename clashes and bust CDN cache if updated
+        'object-versioning' => true,
         // Use a custom domain (CNAME), not supported when using 'storage' Delivery Provider
         'enable-delivery-domain' => !!env('S3_UPLOADS_BUCKET_URL'),
         // Custom domain (CNAME), not supported when using 'storage' Delivery Provider
