@@ -2,6 +2,7 @@
 web/app/plugins/*
 !web/app/plugins/.gitkeep
 !web/app/plugins/amazon-s3-and-cloudfront-tweaks/
+!web/app/plugins/custom-phpmailer/
 web/app/themes/*
 !web/app/themes/.gitkeep
 web/app/mu-plugins/*/
