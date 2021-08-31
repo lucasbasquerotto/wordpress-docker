@@ -66,26 +66,26 @@ function download_theme {
 
 echo "$(date '+%F %X') download plugins..."
 
-download_plugin "akismet" "4.1.9"
+download_plugin "akismet" "4.1.11"
 
-download_plugin "amazon-s3-and-cloudfront" "2.5.3" # WP Offload Media Lite (S3)
+download_plugin "amazon-s3-and-cloudfront" "2.5.5" # WP Offload Media Lite (S3)
 
 download_plugin "bbpress" "2.6.6"
 
-download_plugin "buddypress" "7.2.1"
+download_plugin "buddypress" "9.1.1"
 
-download_plugin "contact-form-7" "5.4"
+download_plugin "contact-form-7" "5.4.2"
 
-download_plugin "disqus-comment-system" "3.0.21"
+download_plugin "disqus-comment-system" "3.0.22"
 
-download_plugin "ewww-image-optimizer" "6.1.0"
+download_plugin "ewww-image-optimizer" "6.2.4"
 
-download_plugin "jetpack" "9.5"
+download_plugin "jetpack" "10.0"
 
 # download_plugin "leadin" "7.41.0" # Hubspot
 
 ### w3-total-cache - start ###
-download_plugin "w3-total-cache" "2.1.1"
+download_plugin "w3-total-cache" "2.1.6"
 
 cp "$APP_DIR"/plugins/w3-total-cache/wp-content/advanced-cache.php \
 	"$APP_DIR"/advanced-cache.php
@@ -98,17 +98,17 @@ mkdir -p "$APP_DIR"/w3tc-config
 chown www-data:www-data "$APP_DIR"/w3tc-config
 ### w3-total-cache - end ###
 
-download_plugin "woocommerce" "5.1.0"
+download_plugin "woocommerce" "5.6.0"
 
 download_plugin "wordpress-importer" "0.7"
 
-download_plugin "wordpress-seo" "16.0.2" # Yoast SEO
+download_plugin "wordpress-seo" "17.0" # Yoast SEO
 
-download_plugin "wpdiscuz" "7.1.5"
+download_plugin "wpdiscuz" "7.2.2"
 
-download_plugin "wpforo" "1.9.6"
+download_plugin "wpforo" "1.9.9"
 
-download_plugin "wp-mail-smtp" "2.7.0"
+download_plugin "wp-mail-smtp" "3.0.3"
 
 echo "$(date '+%F %X') plugins downloaded"
 
