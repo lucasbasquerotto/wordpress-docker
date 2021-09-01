@@ -5,6 +5,8 @@ Dockerfile
 # Application
 web/app/plugins/*
 !web/app/plugins/.gitkeep
+!web/app/plugins/amazon-s3-and-cloudfront-tweaks/
+!web/app/plugins/custom-phpmailer/
 web/app/themes/*
 !web/app/themes/.gitkeep
 web/app/mu-plugins/*/
@@ -28,10 +30,13 @@ web/.htaccess
 wp-cli.local.yml
 
 # Custom
+/composer.lock
 /tmp/*
 
 /env
 /env-*
+
+/composer/dl/
 
 # w3tc
 /web/app/advanced-cache.php

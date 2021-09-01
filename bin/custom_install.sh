@@ -114,11 +114,11 @@ echo "$(date '+%F %X') plugins downloaded"
 
 echo "$(date '+%F %X') download themes..."
 
-download_theme "maxwell" "2.2.2"
+download_theme "maxwell" "2.3.4"
 
 download_theme "ascent" "3.8.7"
 
-download_theme "cordero" "1.2.2"
+download_theme "cordero" "1.2.3"
 
 download_theme "clean-commerce" "1.2"
 

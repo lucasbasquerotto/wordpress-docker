@@ -1,11 +1,11 @@
-FROM lucasbasquerotto/wordpress:composer-2.0.11 AS builder
+FROM lucasbasquerotto/wordpress:composer-2.1.6 AS builder
 
 COPY . /var/www/html
 
 RUN cd /var/www/html \
  && composer install
 
-FROM php:8.0.3-apache
+FROM php:8.0.10-apache
 
 RUN docker-php-ext-install mysqli \
  && docker-php-ext-enable mysqli
