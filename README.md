@@ -6,7 +6,7 @@ This repository is to be used as the Application Layer to deploy a Wordpress web
 
 Define the Wordpress version at the `composer.json` file, in the `require`.`roots/wordpress` section.
 
-If needed, update the PHP version at the `composer.json` file, in the `require`.`php` section. Also, change the PHP version in the `Dockerfile`. Make sure that the PHP version of the composer image (defined in the `composer.dockerfile` file is compatible with the version specified previously).
+If needed, update the PHP version at the `composer.json` file, in the `require`.`php` section. Also, change the PHP version in the `Dockerfile`. Make sure that the PHP version of the composer image (defined in the `composer.dockerfile` file) is compatible with the version specified previously.
 
 Then, generate the image from the `Dockerfile`, push it to the desired repository with a new tag and use it in your projects.
 
