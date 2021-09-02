@@ -1,4 +1,5 @@
 # Application
+web/app/fonts/*
 web/app/plugins/*
 !web/app/plugins/.gitkeep
 !web/app/plugins/amazon-s3-and-cloudfront-tweaks/
