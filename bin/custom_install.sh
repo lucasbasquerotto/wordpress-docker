@@ -74,6 +74,8 @@ download_plugin "bbpress" "2.6.6"
 
 download_plugin "buddypress" "9.1.1"
 
+download_plugin "check-email" "1.0.2"
+
 download_plugin "contact-form-7" "5.4.2"
 
 download_plugin "disqus-comment-system" "3.0.22"
