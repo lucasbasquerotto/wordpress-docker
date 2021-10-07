@@ -12,12 +12,20 @@ class CustomPhpmailer {
 
 	function __construct() {
 		if (env('USE_CUSTOM_SMTP_SETTINGS')) {
+			if (env('WP_DEBUG')) {
+				error_log('use custom smtp settings (phpmailer)');
+			}
+
 			/**
 			* This function will connect wp_mail to your authenticated
 			* SMTP server. Values are constants set in wp-config.php
 			*/
 			add_action( 'phpmailer_init', 'send_smtp_email' );
 			function send_smtp_email( $phpmailer ) {
+				if (env('WP_DEBUG')) {
+					error_log('sending email from ' . (env('SMTP_FROM') ?? '') . ' (server: ' . (env('SMTP_HOST') ?? '') . ')');
+				}
+
 				$phpmailer->isSMTP();
 				$phpmailer->Host       = env('SMTP_HOST');
 				$phpmailer->SMTPAuth   = env('SMTP_AUTH');
